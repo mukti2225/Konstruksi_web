@@ -68,7 +68,7 @@ export default function Home() {
               </span>
               Jasa Konstruksi Terpercaya
             </span>
-            <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight md:text-3xl lg:text-4xl">
+            <h1 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight md:text-4xl lg:text-4xl">
               Bangun & Renovasi <br />
               <span className="bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">Rumah Impian</span> Anda
             </h1>
@@ -90,7 +90,6 @@ export default function Home() {
           <div className="hidden lg:block flex-1 w-full max-w-md lg:max-w-none">
             <div className="relative aspect-square rounded-3xl shadow-2xl overflow-hidden border border-slate-700">
               <Image src="/image/visualisasi.jpg" alt="Visualisasi Proyek" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" priority />
-              {/* overlay gradient biar teks bawah tetap kebaca */}
               <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-slate-950/90 to-transparent"></div>
               <div className="absolute bottom-4 left-4 right-4 flex justify-between text-xs font-medium text-white">
                 <span>🏠 Renovasi</span>

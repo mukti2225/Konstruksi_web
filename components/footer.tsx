@@ -8,7 +8,7 @@ import { MessageCircle, Calendar, Phone, X } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="bg-slate-950 text-white">
-      <div className="mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-16">
+      <div className="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-10">
         <div className="grid gap-8 md:grid-cols-4">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3">

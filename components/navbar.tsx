@@ -28,14 +28,14 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 md:py-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 md:gap-3 group">
-          <div className="relative h-9 w-9 md:h-11 md:w-11 overflow-hidden flex items-center justify-center transition-transform group-hover:scale-105">
+          <div className="relative h-9 w-9 md:h-11 md:w-11 overflow-hidden flex items-center justify-center">
             <Image src="/image/logo.png" alt="Imperial Serpong" fill className="object-contain p-1" priority />
           </div>
           <div>
             <span className="text-base md:text-xl font-extrabold text-slate-800 tracking-tight">
               Imperial <span className="text-green-600">Serpong</span>
             </span>
-            <span className="hidden md:block text-[10px] font-medium text-slate-500 -mt-0.8 leading-none">JASA KONSTRUKSI & RENOVASI</span>
+            <span className="hidden md:block text-[10px] font-medium text-slate-500 -mt-0.10 leading-none">JASA KONSTRUKSI & RENOVASI</span>
           </div>
         </Link>
 
@@ -64,7 +64,7 @@ export default function Navbar() {
           </a>
 
           <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden rounded-lg p-2 text-slate-700 hover:bg-slate-100 transition-colors" aria-label="Toggle menu">
-            {isOpen ? <X size={26} /> : <Menu size={26} />}
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
@@ -77,18 +77,18 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="flex items-center justify-between rounded-lg px-4 py-3 text-base font-medium text-slate-700 transition-colors hover:bg-green-50 hover:text-green-600"
+              className="flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-green-50 hover:text-green-600"
             >
               <span>{link.label}</span>
-              <ChevronRight size={18} className="text-slate-400" />
+              <ChevronRight size={14} className="text-slate-400" />
             </Link>
           ))}
           <a
             href="https://wa.me/62895613299897"
             target="_blank"
-            className="mt-3 flex items-center justify-center gap-2 rounded-full bg-green-400 py-3.5 text-base font-bold text-slate-900 shadow-md shadow-green-400/30 transition-all hover:bg-green-300"
+            className="mt-3 flex items-center justify-center gap-2 rounded-full bg-green-400 py-3.5 text-sm font-bold text-slate-900 shadow-md shadow-green-400/30 transition-all hover:bg-green-300"
           >
-            <Phone size={18} />
+            <Phone size={14} />
             Hubungi Kami
           </a>
         </div>
