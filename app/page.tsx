@@ -210,7 +210,7 @@ export default function Home() {
             {portfolioItems.map((item, idx) => (
               <div key={idx} className="group relative h-64 w-full overflow-hidden rounded-2xl shadow-md">
                 <Image src={item.image} alt={item.title} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100 flex items-end p-5">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 lg:opacity-0 transition-opacity lg:group-hover:opacity-100 flex items-end p-5">
                   <div>
                     <h3 className="font-bold text-white text-lg">{item.title}</h3>
                     <p className="text-sm text-green-300">{item.location}</p>
