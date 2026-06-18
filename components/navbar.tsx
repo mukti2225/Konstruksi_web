@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ChevronRight, Menu, Phone, X } from "lucide-react";
@@ -27,14 +28,14 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 md:py-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 md:gap-3 group">
-          <div className="relative h-9 w-9 md:h-11 md:w-11 overflow-hidden rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-md transition-transform group-hover:scale-105">
-            <span className="text-lg md:text-xl font-black text-white">IS</span>
+          <div className="relative h-9 w-9 md:h-11 md:w-11 overflow-hidden flex items-center justify-center transition-transform group-hover:scale-105">
+            <Image src="/image/logo.png" alt="Imperial Serpong" fill className="object-contain p-1" priority />
           </div>
           <div>
             <span className="text-base md:text-xl font-extrabold text-slate-800 tracking-tight">
-              Imperial<span className="text-yellow-500">Serpong</span>
+              Imperial <span className="text-green-600">Serpong</span>
             </span>
-            <span className="hidden md:block text-[10px] font-medium text-slate-400 -mt-0.5 leading-none">KONSTRUKSI & RENOVASI</span>
+            <span className="hidden md:block text-[10px] font-medium text-slate-500 -mt-0.8 leading-none">JASA KONSTRUKSI & RENOVASI</span>
           </div>
         </Link>
 
@@ -44,7 +45,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="relative text-sm font-medium text-slate-600 transition-colors hover:text-yellow-600 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-yellow-500 after:transition-all after:duration-300 hover:after:w-full"
+              className="relative text-sm font-medium text-slate-600 transition-colors hover:text-green-600 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-green-500 after:transition-all after:duration-300 hover:after:w-full"
             >
               {link.label}
             </Link>
@@ -56,7 +57,7 @@ export default function Navbar() {
           <a
             href="https://wa.me/62895613299897"
             target="_blank"
-            className="hidden md:flex items-center gap-2 rounded-full bg-yellow-400 px-5 py-2.5 text-sm font-bold text-slate-900 shadow-md shadow-yellow-400/30 transition-all hover:bg-yellow-300 hover:shadow-lg hover:shadow-yellow-400/40 hover:-translate-y-0.5"
+            className="hidden md:flex items-center gap-2 rounded-full bg-green-400 px-5 py-2.5 text-sm font-bold text-slate-900 shadow-md shadow-green-400/30 transition-all hover:bg-green-300 hover:shadow-lg hover:shadow-green-400/40 hover:-translate-y-0.5"
           >
             <Phone size={16} />
             Hubungi Kami
@@ -76,7 +77,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="flex items-center justify-between rounded-lg px-4 py-3 text-base font-medium text-slate-700 transition-colors hover:bg-yellow-50 hover:text-yellow-600"
+              className="flex items-center justify-between rounded-lg px-4 py-3 text-base font-medium text-slate-700 transition-colors hover:bg-green-50 hover:text-green-600"
             >
               <span>{link.label}</span>
               <ChevronRight size={18} className="text-slate-400" />
@@ -85,7 +86,7 @@ export default function Navbar() {
           <a
             href="https://wa.me/62895613299897"
             target="_blank"
-            className="mt-3 flex items-center justify-center gap-2 rounded-full bg-yellow-400 py-3.5 text-base font-bold text-slate-900 shadow-md shadow-yellow-400/30 transition-all hover:bg-yellow-300"
+            className="mt-3 flex items-center justify-center gap-2 rounded-full bg-green-400 py-3.5 text-base font-bold text-slate-900 shadow-md shadow-green-400/30 transition-all hover:bg-green-300"
           >
             <Phone size={18} />
             Hubungi Kami
