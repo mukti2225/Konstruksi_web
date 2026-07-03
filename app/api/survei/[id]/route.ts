@@ -4,7 +4,8 @@ import type { StatusSurvei } from "@/types/survei";
 
 const STATUS_VALID: StatusSurvei[] = ["baru", "dikonfirmasi", "selesai", "batal"];
 
-export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const body = await request.json();
   const status = body.status as StatusSurvei;
 
@@ -13,16 +14,18 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
   }
 
   try {
-    const booking = await updateBookingStatus(params.id, status);
+    const booking = await updateBookingStatus(id, status);
     return NextResponse.json(booking);
   } catch (error) {
     return NextResponse.json({ error: "Booking tidak ditemukan." }, { status: 404 });
   }
 }
 
-export async function DELETE(_request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+
   try {
-    await deleteBooking(params.id);
+    await deleteBooking(id);
     return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json({ error: "Booking tidak ditemukan." }, { status: 404 });
