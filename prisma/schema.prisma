@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// datasource db {
+//   provider = "mysql"
+//   url      = env("DATABASE_URL")
+// }
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  name String
+  email String @unique
+  password String
+  role String @default("user")
+  createdAt DateTime @default(now())
+}
+
+enum Role {
+  user
+  admin
+}
+
+model PortfolioItem {
+  id        String   @id @default(cuid())
+  title     String
+  location  String
+  image     String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model TestimoniItem {
+  id        String   @id @default(cuid())
+  name     String
+  role  String
+  text     String
+  rating   Int
+  order     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum StatusSurvei {
+  baru
+  dikonfirmasi
+  selesai
+  batal
+}
+
+model BookingSurvei {
+  id        String       @id @default(uuid())
+  name      String
+  phone     String
+  address   String
+  service   String
+  date      String 
+  time      String
+  message   String       @default("")
+  status    StatusSurvei @default(baru)
+  createdAt DateTime     @default(now())
+
+  @@map("booking_survei")
+}
