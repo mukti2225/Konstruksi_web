@@ -7,7 +7,7 @@ interface DashboardStats {
 }
 
 async function getDashboardStats(): Promise<DashboardStats> {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/dashboard/stats`, {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/dashboard`, {
     cache: "no-store",
   });
 
@@ -32,8 +32,10 @@ export default async function DashboardPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
-
+      {/* Header */}
+      <div className="mb-6 flex flex-col border-b border-[#E7E5E0] pb-5 sm:mb-5 sm:pb-5">
+        <h1 className="text-xl font-bold tracking-tight text-[#14181A] lg:text-2xl">Dashboard</h1>
+      </div>
       {error ? (
         <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-600">Gagal memuat data dashboard. Silakan refresh halaman.</div>
       ) : (

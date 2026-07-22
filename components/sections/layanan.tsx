@@ -13,7 +13,7 @@ export const Layanan = () => {
   ];
 
   return (
-    <section id="layanan" className="py-16 md:py-24 bg-slate-50">
+    <section id="layanan" className="py-14 md:py-14 bg-slate-50">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="text-center max-w-2xl mx-auto">
           <span className="text-sm font-semibold uppercase tracking-wider text-green-500">Layanan</span>
@@ -23,9 +23,9 @@ export const Layanan = () => {
           <p className="mt-3 text-slate-600">Kami menyediakan berbagai layanan konstruksi untuk mewujudkan rumah impian Anda.</p>
         </div>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((svc, idx) => (
-            <div key={idx} className="group rounded-2xl bg-white p-6 shadow-sm transition-all hover:-translate-y-2 hover:shadow-xl border border-transparent hover:border-green-200">
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((svc, id) => (
+            <div key={id} className="group rounded-2xl bg-white p-6 shadow-sm transition-all hover:-translate-y-2 hover:shadow-md border border-transparent hover:border-green-200">
               <div className="mb-4 inline-flex rounded-xl bg-green-50 p-3 text-green-500 transition-colors group-hover:bg-green-500 group-hover:text-white">{svc.icon}</div>
               <h3 className="text-lg font-bold text-slate-800">{svc.title}</h3>
               <p className="mt-2 text-sm text-slate-500 leading-relaxed">{svc.desc}</p>

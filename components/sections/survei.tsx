@@ -102,7 +102,7 @@ export const JadwalSurvei = () => {
   };
 
   return (
-    <section id="jadwal-survei" className="py-16 md:py-24 bg-slate-50">
+    <section id="jadwal-survei" className="py-14 md:py-14 bg-slate-50">
       <div className="mx-auto max-w-3xl px-4 md:px-6">
         <div className="text-center max-w-2xl mx-auto">
           <span className="text-sm font-semibold uppercase tracking-wider text-green-500">Survei Lokasi</span>

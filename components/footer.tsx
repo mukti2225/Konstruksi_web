@@ -51,13 +51,13 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li className="flex items-center gap-2">
                 <Phone size={14} />
-                <a href="tel:+62895613299897" className="transition-colors hover:text-green-400">
-                  +62 895 6132 99897
+                <a href="tel:081289969933" className="transition-colors hover:text-green-400">
+                  +62-812-8996-9933
                 </a>
               </li>
               <li className="flex items-center gap-2 transition-colors hover:text-green-400">
                 <MessageCircle size={14} />
-                <a href="https://wa.me/62895613299897">WhatsApp</a>
+                <a href="https://wa.me/6281289969933">WhatsApp</a>
               </li>
             </ul>
           </div>

@@ -20,7 +20,7 @@ export const Kalkulator = () => {
   };
 
   return (
-    <section id="kalkulator" className="py-16 md:py-24 bg-white">
+    <section id="kalkulator" className="py-20 md:py-20 bg-white">
       <div className="mx-auto max-w-3xl px-4 md:px-6">
         <div className="rounded-3xl bg-linear-to-br from-slate-900 to-slate-950 p-8 md:p-12 text-white shadow-2xl">
           <div className="flex items-center gap-3 mb-2">

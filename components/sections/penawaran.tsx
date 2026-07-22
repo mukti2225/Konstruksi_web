@@ -13,10 +13,10 @@ export const Penawaran = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const waMsg = `Halo Imperial Serpong!%0A%0ANama: ${formData.name}%0ANo. WhatsApp: ${formData.phone}%0ADeskripsi: ${formData.message}`;
-    window.open(`https://wa.me/62895613299897?text=${waMsg}`, "_blank");
+    window.open(`https://wa.me/6281289969933?text=${waMsg}`, "_blank");
   };
   return (
-    <section id="penawaran" className="py-16 md:py-8 bg-slate-50">
+    <section id="penawaran" className="py-14 md:py-14 bg-slate-50">
       <div className="mx-auto max-w-3xl px-4 md:px-6">
         <div className="text-center max-w-2xl mx-auto">
           <span className="text-sm font-semibold uppercase tracking-wider text-green-500">Konsultasi</span>

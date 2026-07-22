@@ -1,3 +1,4 @@
+// app/api/portfolio/route.ts
 import { NextResponse } from "next/server";
 import { requireAdminApi } from "@/lib/auth-utils";
 import { getPortfolioItems, createPortfolioItem } from "@/lib/portfolio";
@@ -17,6 +18,13 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Data tidak lengkap" }, { status: 400 });
   }
 
-  const item = await createPortfolioItem(body);
+  const item = await createPortfolioItem({
+    title: body.title,
+    location: body.location,
+    image: body.image,
+    images: Array.isArray(body.images) ? body.images : [],
+    order: typeof body.order === "number" ? body.order : undefined,
+  });
+
   return NextResponse.json(item, { status: 201 });
 }

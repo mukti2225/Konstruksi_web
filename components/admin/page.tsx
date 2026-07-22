@@ -15,7 +15,6 @@ export default function DashboardPage({ user, children }: { user: any; children:
     };
   }, [sidebarOpen]);
 
-  // Tutup drawer otomatis saat layar di-resize ke ukuran desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
