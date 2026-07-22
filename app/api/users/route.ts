@@ -24,6 +24,7 @@ export async function POST(req: Request) {
     const user = await createUser({
       name: body.name.trim(),
       email: body.email.trim(),
+      password: body.password?.trim() || "",
       role: body.role === "admin" ? "admin" : "user",
     });
     return NextResponse.json(user, { status: 201 });

@@ -14,7 +14,7 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
   }
 
   try {
-    const user = await updateUser(id, {
+    const user = await updateUser(parseInt(id), {
       name: body.name.trim(),
       email: body.email.trim(),
       role: body.role === "admin" ? "admin" : "user",
@@ -33,6 +33,6 @@ export async function DELETE(_req: Request, { params }: { params: Promise<{ id: 
   if (denied) return denied;
 
   const { id } = await params;
-  await deleteUser(id);
+  await deleteUser(parseInt(id));
   return NextResponse.json({ success: true });
 }
