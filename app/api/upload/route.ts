@@ -1,8 +1,6 @@
-// app/api/upload/route.ts
 import { NextResponse } from "next/server";
 import { requireAdminApi } from "@/lib/auth-utils";
-import { writeFile } from "fs/promises";
-import path from "path";
+import { supabaseAdmin } from "@/lib/supabase-server";
 
 export async function POST(req: Request) {
   const denied = await requireAdminApi();
@@ -18,9 +16,19 @@ export async function POST(req: Request) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
   const filename = `${Date.now()}-${file.name.replace(/\s+/g, "-")}`;
-  const filepath = path.join(process.cwd(), "public/uploads", filename);
 
-  await writeFile(filepath, buffer);
+  const { error } = await supabaseAdmin.storage
+    .from("portfolio") // nama bucket
+    .upload(filename, buffer, {
+      contentType: file.type,
+      upsert: false,
+    });
 
-  return NextResponse.json({ url: `/uploads/${filename}` });
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  const { data: publicUrlData } = supabaseAdmin.storage.from("portfolio").getPublicUrl(filename);
+
+  return NextResponse.json({ url: publicUrlData.publicUrl });
 }
