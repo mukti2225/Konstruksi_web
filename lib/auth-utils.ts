@@ -3,10 +3,8 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 
-// Dipakai di Server Component / halaman (layout, page)
 export async function requireAdmin() {
   const session = await getServerSession(authOptions);
-
   if (!session) {
     redirect("/login");
   }
@@ -18,7 +16,6 @@ export async function requireAdmin() {
   return session;
 }
 
-// Dipakai di API Route (app/api/.../route.ts)
 export async function requireAdminApi() {
   const session = await getServerSession(authOptions);
 
@@ -30,5 +27,5 @@ export async function requireAdminApi() {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  return null; // null artinya lolos, boleh lanjut proses
+  return null;
 }

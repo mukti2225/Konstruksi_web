@@ -86,7 +86,6 @@ export const JadwalSurvei = () => {
       });
 
       if (res.status === 401) {
-        // Sesi mungkin sudah kedaluwarsa di antara load halaman dan submit.
         setStatusKirim("error");
         return;
       }

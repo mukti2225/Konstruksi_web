@@ -9,16 +9,13 @@ import Footer from "@/components/footer";
 export default function Providers({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  const hideLayout = pathname === "/login" || pathname === "/register" || pathname.startsWith("/dashboard");
+  const hideLayout = pathname === "/login" || pathname === "/register" || pathname.startsWith("/dashboard") || pathname.startsWith("/client");
 
   return (
     <SessionProvider>
       <Toaster position="top-right" reverseOrder={false} />
-
       {!hideLayout && <Navbar />}
-
       {children}
-
       {!hideLayout && <Footer />}
     </SessionProvider>
   );

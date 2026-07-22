@@ -86,10 +86,9 @@ export default function DashboardSurveiPage() {
 
   return (
     <div className="min-w-0">
-      <div className="flex flex-col gap-3 border-b border-slate-200 pb-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-row justify-between border-b border-slate-200 pb-4 sm:flex-row sm:justify-between">
         <div>
-          <h1 className="text-lg font-bold text-slate-800">Jadwal Survei</h1>
-          <p className="text-xs text-slate-500">Kelola permintaan survei lokasi dari website</p>
+          <h1 className="text-2xl font-bold text-slate-800">Jadwal Survei</h1>
         </div>
         <button
           type="button"

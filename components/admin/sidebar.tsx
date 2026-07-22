@@ -83,7 +83,7 @@ export default function Sidebar({ user, open = false, onClose }: SidebarProps) {
         </nav>
 
         {/* Footer */}
-        <div className="border-t border-[#E7E5E0] p-4">
+        <div className="border-t flex gap-4 justify-between border-[#E7E5E0] p-4 ">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#14181A] text-xs font-semibold text-white">{initials}</div>
 
@@ -94,19 +94,16 @@ export default function Sidebar({ user, open = false, onClose }: SidebarProps) {
             </div>
           </div>
 
-          <button
+          <button onClick={() => signOut({ callbackUrl: "/login" })} className="items-center px-3 py-2 text-sm font-medium text-[#6B7280] transition hover:border-[#FCA5A5] hover:bg-[#FDECEC] hover:text-[#DC2626]">
+            <LogOut className="h-4 w-4" />
+          </button>
+
+          {/* <button
             onClick={() => router.push("/")}
             className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg border border-[#E7E5E0] px-3 py-2 text-sm font-medium text-[#6B7280] transition hover:border-[#FCA5A5] hover:bg-[#FDECEC] hover:text-[#DC2626]"
           >
             <div> kembali</div>
-          </button>
-          <button
-            onClick={() => signOut({ callbackUrl: "/login" })}
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg border border-[#E7E5E0] px-3 py-2 text-sm font-medium text-[#6B7280] transition hover:border-[#FCA5A5] hover:bg-[#FDECEC] hover:text-[#DC2626]"
-          >
-            <LogOut className="h-4 w-4" />
-            Keluar
-          </button>
+          </button> */}
         </div>
       </aside>
     </>

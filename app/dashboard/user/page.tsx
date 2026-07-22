@@ -97,10 +97,10 @@ export default function UsersPage() {
     if (!confirm("Hapus user ini?")) return;
     try {
       await fetch(`/api/users/${id}`, { method: "DELETE" });
-      setUsers((prev) => prev.filter((u) => u.id !== id)); // optimistic
+      setUsers((prev) => prev.filter((u) => u.id !== id));
     } catch (err) {
       console.error(err);
-      fetchUsers(); // rollback kalau gagal
+      fetchUsers();
     }
   }
 
@@ -109,16 +109,10 @@ export default function UsersPage() {
   }
 
   return (
-    <div>
-      <div className="mb-4 flex items-center justify-between">
-        <div>
-          <h1 className="text-lg font-semibold text-gray-900">Daftar User</h1>
-          <p className="text-sm text-gray-500">{loading ? "Memuat..." : `${users.length} user terdaftar`}</p>
-        </div>
-        <button onClick={openCreate} className="flex items-center gap-1.5 rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-800">
-          <Plus size={16} />
-          Tambah User
-        </button>
+    <div className="min-w-0">
+      {/* Header */}
+      <div className="mb-6 flex flex-col border-b border-[#E7E5E0] pb-5 sm:mb-5 sm:pb-5">
+        <h1 className="text-xl font-bold tracking-tight text-[#14181A] lg:text-2xl">Daftar Users</h1>
       </div>
 
       {/* Form tambah/edit */}
@@ -158,57 +152,94 @@ export default function UsersPage() {
 
       {/* Tabel */}
       <div className="overflow-hidden rounded-lg border border-gray-200">
-        <table className="w-full text-sm">
-          <thead className="bg-gray-50 text-left text-xs uppercase tracking-wide text-gray-500">
-            <tr>
-              <th className="px-4 py-2.5">Nama</th>
-              <th className="px-4 py-2.5">Email</th>
-              <th className="px-4 py-2.5">Role</th>
-              <th className="px-4 py-2.5">Bergabung</th>
-              <th className="px-4 py-2.5 text-right">Aksi</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            {loading ? (
-              <tr>
-                <td colSpan={5} className="px-4 py-8 text-center text-gray-400">
-                  <Loader2 size={18} className="mx-auto animate-spin" />
-                </td>
-              </tr>
-            ) : (
-              <>
-                {users.map((u) => (
-                  <tr key={u.id} className="hover:bg-gray-50">
-                    <td className="px-4 py-2.5 font-medium text-gray-900">{u.name}</td>
-                    <td className="px-4 py-2.5 text-gray-600">{u.email}</td>
-                    <td className="px-4 py-2.5">
-                      <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${u.role === "admin" ? "bg-amber-100 text-amber-700" : "bg-gray-100 text-gray-600"}`}>{u.role === "admin" ? "Admin" : "User"}</span>
-                    </td>
-                    <td className="px-4 py-2.5 text-gray-600">{formatDate(u.joinedAt)}</td>
-                    <td className="px-4 py-2.5">
-                      <div className="flex justify-end gap-2">
-                        <button onClick={() => openEdit(u)} className="rounded p-1.5 text-gray-500 hover:bg-gray-100 hover:text-gray-800" aria-label="Edit">
-                          <Pencil size={14} />
-                        </button>
-                        <button onClick={() => handleDelete(u.id)} className="rounded p-1.5 text-gray-500 hover:bg-red-50 hover:text-red-600" aria-label="Hapus">
-                          <Trash2 size={14} />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+        <div className="block sm:hidden">
+          {loading ? (
+            <div className="px-4 py-8 text-center text-gray-400">
+              <Loader2 size={18} className="mx-auto animate-spin" />
+            </div>
+          ) : (
+            <>
+              {users.map((u) => (
+                <div key={u.id} className="border-b border-gray-100 p-4 last:border-b-0">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <div className="font-medium text-gray-900">{u.name}</div>
+                      <div className="mt-1 break-all text-sm text-gray-600">{u.email}</div>
+                    </div>
+                    <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${u.role === "admin" ? "bg-amber-100 text-amber-700" : "bg-gray-100 text-gray-600"}`}>{u.role === "admin" ? "Admin" : "User"}</span>
+                  </div>
+                  <div className="mt-3 flex items-center justify-between text-sm text-gray-600">
+                    <span>{formatDate(u.joinedAt)}</span>
+                    <div className="flex gap-2">
+                      <button onClick={() => openEdit(u)} className="rounded p-1.5 text-gray-500 hover:bg-gray-100 hover:text-gray-800" aria-label="Edit">
+                        <Pencil size={14} />
+                      </button>
+                      <button onClick={() => handleDelete(u.id)} className="rounded p-1.5 text-gray-500 hover:bg-red-50 hover:text-red-600" aria-label="Hapus">
+                        <Trash2 size={14} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
 
-                {users.length === 0 && (
-                  <tr>
-                    <td colSpan={5} className="px-4 py-8 text-center text-gray-400">
-                      Belum ada user.
-                    </td>
-                  </tr>
-                )}
-              </>
-            )}
-          </tbody>
-        </table>
+              {users.length === 0 && <div className="px-4 py-8 text-center text-gray-400">Belum ada user.</div>}
+            </>
+          )}
+        </div>
+
+        <div className="hidden overflow-x-auto sm:block">
+          <table className="min-w-[640px] w-full text-sm">
+            <thead className="bg-gray-50 text-left text-xs uppercase tracking-wide text-gray-500">
+              <tr>
+                <th className="px-4 py-2.5">Nama</th>
+                <th className="px-4 py-2.5">Email</th>
+                <th className="px-4 py-2.5">Role</th>
+                <th className="px-4 py-2.5">Bergabung</th>
+                <th className="px-4 py-2.5 text-right">Aksi</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {loading ? (
+                <tr>
+                  <td colSpan={5} className="px-4 py-8 text-center text-gray-400">
+                    <Loader2 size={18} className="mx-auto animate-spin" />
+                  </td>
+                </tr>
+              ) : (
+                <>
+                  {users.map((u) => (
+                    <tr key={u.id} className="hover:bg-gray-50">
+                      <td className="px-4 py-2.5 font-medium text-gray-900">{u.name}</td>
+                      <td className="px-4 py-2.5 text-gray-600">{u.email}</td>
+                      <td className="px-4 py-2.5">
+                        <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${u.role === "admin" ? "bg-amber-100 text-amber-700" : "bg-gray-100 text-gray-600"}`}>{u.role === "admin" ? "Admin" : "User"}</span>
+                      </td>
+                      <td className="px-4 py-2.5 text-gray-600">{formatDate(u.joinedAt)}</td>
+                      <td className="px-4 py-2.5">
+                        <div className="flex justify-end gap-2">
+                          <button onClick={() => openEdit(u)} className="rounded p-1.5 text-gray-500 hover:bg-gray-100 hover:text-gray-800" aria-label="Edit">
+                            <Pencil size={14} />
+                          </button>
+                          <button onClick={() => handleDelete(u.id)} className="rounded p-1.5 text-gray-500 hover:bg-red-50 hover:text-red-600" aria-label="Hapus">
+                            <Trash2 size={14} />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+
+                  {users.length === 0 && (
+                    <tr>
+                      <td colSpan={5} className="px-4 py-8 text-center text-gray-400">
+                        Belum ada user.
+                      </td>
+                    </tr>
+                  )}
+                </>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

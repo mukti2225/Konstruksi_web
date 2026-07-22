@@ -53,7 +53,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           {status === "authenticated" ? (
             <div className="relative hidden md:block">
-              <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="flex items-center gap-3 rounded-full border border-slate-200 bg-white px-3 py-2 shadow-sm transition hover:bg-slate-50">
+              <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="flex items-center gap-3 rounded-lg bg-transparent px-3 py-2 transition hover:bg-slate-100">
                 {session.user.image ? (
                   <Image src={session.user.image} alt={session.user.name ?? ""} width={15} height={15} className="rounded-full" />
                 ) : (
@@ -61,7 +61,7 @@ export default function Navbar() {
                 )}
                 <span className="font-semibold">{session.user.name}</span>
 
-                <ChevronDown size={16} />
+                <ChevronDown size={16} className={`transition-transform ${isDropdownOpen ? "rotate-180" : ""}`} />
               </button>
 
               {isDropdownOpen && (
@@ -91,13 +91,12 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Navigation */}
-      <div className={`overflow-hidden border-t border-slate-100 bg-white transition-all duration-300 ease-in-out lg:hidden ${isOpen ? "max-h-32rem opacity-100" : "max-h-0 opacity-0"}`}>
+      <div className={`overflow-hidden border-b border-slate-100 bg-white transition-all duration-300 ease-in-out lg:hidden ${isOpen ? "max-h-32rem opacity-100" : "max-h-0 opacity-0"}`}>
         <div className="flex flex-col space-y-1 px-4 py-5">
           <NavLinks mobile onClick={() => setIsOpen(false)} />
-
           {status === "authenticated" ? (
             <div className="relative mt-3">
-              <button onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)} className="flex w-full items-center gap-3 rounded-xl border border-slate-200 bg-white px-3 py-2.5 shadow-sm transition hover:bg-slate-50">
+              <button onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)} className="flex w-full items-center gap-3 rounded-xl border border-slate-100 bg-white px-3 py-2.5 shadow-sm transition hover:bg-slate-50">
                 {session.user.image ? (
                   <Image src={session.user.image} alt={session.user.name ?? ""} width={36} height={36} className="rounded-full" />
                 ) : (

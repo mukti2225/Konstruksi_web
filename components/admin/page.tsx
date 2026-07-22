@@ -35,7 +35,7 @@ export default function DashboardPage({ user, children }: { user: any; children:
           <button onClick={() => setSidebarOpen(true)} className="rounded-lg p-1.5 text-[#4B5563] hover:bg-[#FAFAF8] hover:text-[#14181A]" aria-label="Buka menu">
             <Menu className="h-5 w-5" />
           </button>
-          <p className="text-sm font-semibold text-[#14181A]">Admin Panel</p>
+          <p className="text-sm font-semibold text-[#14181A]">Dashboard Admin</p>
         </header>
         <main className="flex-1 p-4 lg:p-6 bg-gray-50">{children}</main>
       </div>
