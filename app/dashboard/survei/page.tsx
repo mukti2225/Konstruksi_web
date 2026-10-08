@@ -102,7 +102,7 @@ export default function DashboardSurveiPage() {
 
       <div className="pt-6">
         {/* Kartu statistik */}
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-2.5 sm:gap-4 lg:grid-cols-4">
           <KartuStatistik label="Total Booking" nilai={statistik.total} />
           <KartuStatistik label="Menunggu Konfirmasi" nilai={statistik.baru} aksen="amber" />
           <KartuStatistik label="Survei Hari Ini" nilai={statistik.hariIni} aksen="blue" />
@@ -110,7 +110,7 @@ export default function DashboardSurveiPage() {
         </div>
 
         {/* Filter */}
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-5 sm:mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="relative w-full sm:max-w-xs">
             <Search size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
@@ -118,16 +118,16 @@ export default function DashboardSurveiPage() {
               placeholder="Cari nama, telepon, alamat..."
               value={pencarian}
               onChange={(e) => setPencarian(e.target.value)}
-              className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-9 pr-3 text-sm focus:border-green-400 focus:outline-none focus:ring-2 focus:ring-green-400/30"
+              className="w-full rounded-xl border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm focus:border-green-400 focus:outline-none focus:ring-2 focus:ring-green-400/30"
             />
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex gap-1.5 overflow-x-auto pb-1 sm:flex-wrap sm:pb-0">
             {STATUS_FILTER.map((s) => (
               <button
                 key={s}
                 type="button"
                 onClick={() => setFilterStatus(s)}
-                className={`rounded-xl border px-3 py-1.5 text-xs font-medium capitalize transition-colors ${
+                className={`shrink-0 rounded-xl border px-3 py-1.5 text-xs font-semibold capitalize transition-colors ${
                   filterStatus === s ? "border-green-400 bg-green-50 text-green-700" : "border-slate-200 bg-white text-slate-500 hover:border-green-300"
                 }`}
               >
@@ -306,9 +306,9 @@ function KartuStatistik({ label, nilai, aksen }: { label: string; nilai: number;
   const warna = aksen === "amber" ? "text-amber-600" : aksen === "blue" ? "text-blue-600" : aksen === "green" ? "text-green-600" : "text-slate-800";
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <p className="text-xs font-medium text-slate-500">{label}</p>
-      <p className={`mt-1.5 text-2xl font-bold ${warna}`}>{nilai}</p>
+    <div className="rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 shadow-sm">
+      <p className="text-[11px] sm:text-xs font-medium text-slate-500 truncate">{label}</p>
+      <p className={`mt-1 text-xl sm:text-2xl font-bold ${warna}`}>{nilai}</p>
     </div>
   );
 }

@@ -9,13 +9,10 @@ interface NavLinksProps {
 }
 
 const navLinks = [
-  { href: "/#beranda", label: "Beranda" },
   { href: "/#layanan", label: "Layanan" },
   { href: "/#portfolio", label: "Portfolio" },
   { href: "/#kalkulator", label: "Kalkulator" },
   { href: "/lacak-proyek", label: "Lacak Proyek", isTracker: true },
-  { href: "/#tentang", label: "Tentang" },
-  { href: "/#testimoni", label: "Testimoni" },
   { href: "/#penawaran", label: "Kontak" },
 ];
 

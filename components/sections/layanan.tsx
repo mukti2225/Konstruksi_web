@@ -43,7 +43,7 @@ export const Layanan = () => {
   ];
 
   return (
-    <section id="layanan" className="py-16 md:py-20 bg-slate-50/60">
+    <section id="layanan" className="py-12 sm:py-16 md:py-20 bg-slate-50/60">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="text-center max-w-2xl mx-auto">
           <span className="text-xs font-bold uppercase tracking-wider text-emerald-600">
@@ -52,38 +52,38 @@ export const Layanan = () => {
           <h2 className="mt-2 text-2xl sm:text-3xl font-bold text-slate-900 md:text-4xl">
             Solusi Lengkap Bangun & Renovasi
           </h2>
-          <p className="mt-2.5 text-sm text-slate-600">
+          <p className="mt-2 text-xs sm:text-sm text-slate-600">
             Dikerjakan langsung oleh tukang spesialis di bawah pengawasan mandor berpengalaman.
           </p>
         </div>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 sm:mt-10 grid gap-3.5 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((svc, idx) => {
             const Icon = svc.icon;
             return (
               <div
                 key={idx}
-                className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-emerald-300 hover:shadow-md"
+                className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-4 sm:p-6 transition hover:border-emerald-300 hover:shadow-md"
               >
                 <div>
-                  <div className="flex items-center justify-between">
-                    <div className="rounded-xl bg-emerald-50 p-2.5 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                      <Icon size={22} />
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="rounded-xl bg-emerald-50 p-2 sm:p-2.5 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors shrink-0">
+                      <Icon className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
                     </div>
-                    <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-bold text-slate-700">
+                    <span className="rounded-full bg-slate-100 px-2 py-0.5 sm:px-2.5 text-[10px] sm:text-[11px] font-bold text-slate-700 text-right">
                       {svc.price}
                     </span>
                   </div>
 
-                  <h3 className="mt-4 text-base font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                  <h3 className="mt-3 sm:mt-4 text-sm sm:text-base font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
                     {svc.title}
                   </h3>
-                  <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {svc.desc}
                   </p>
                 </div>
 
-                <div className="mt-5 pt-4 border-t border-slate-100">
+                <div className="mt-4 sm:mt-5 pt-3.5 sm:pt-4 border-t border-slate-100">
                   <a
                     href={`https://wa.me/6281289969933?text=Halo%20Imperial%20Serpong,%20saya%20tertarik%20dengan%20layanan%20${encodeURIComponent(svc.title)}`}
                     target="_blank"

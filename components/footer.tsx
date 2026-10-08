@@ -13,8 +13,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-slate-950 text-white border-t border-slate-800">
-      <div className="mx-auto max-w-7xl px-4 pt-12 pb-8 md:px-6">
-        <div className="grid gap-8 md:grid-cols-12">
+      <div className="mx-auto max-w-7xl px-4 pt-10 pb-6 sm:pt-12 sm:pb-8 md:px-6">
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-12">
           {/* Brand */}
           <div className="md:col-span-5">
             <div className="flex items-center gap-2.5">

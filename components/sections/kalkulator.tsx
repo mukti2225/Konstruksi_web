@@ -87,13 +87,13 @@ export const Kalkulator = () => {
         </div>
 
         {/* Card */}
-        <div className="mt-10 rounded-2xl border border-slate-800 bg-slate-950 p-6 md:p-8 shadow-xl">
+        <div className="mt-8 sm:mt-10 rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:p-6 md:p-8 shadow-xl">
           {/* 1. Pilih Paket */}
           <div>
             <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
               1. Pilih Jenis Pekerjaan
             </label>
-            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-3 grid gap-2.5 sm:gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {projectTypes.map((pt) => {
                 const active = selectedType === pt.id;
                 return (
@@ -101,7 +101,7 @@ export const Kalkulator = () => {
                     key={pt.id}
                     type="button"
                     onClick={() => setSelectedType(pt.id)}
-                    className={`rounded-xl border p-4 text-left transition ${
+                    className={`rounded-xl border p-3 sm:p-4 text-left transition ${
                       active
                         ? "border-emerald-500 bg-emerald-950/40 text-white"
                         : "border-slate-800 bg-slate-900/60 text-slate-300 hover:border-slate-700"
@@ -112,7 +112,7 @@ export const Kalkulator = () => {
                       {active && <span className="h-2 w-2 rounded-full bg-emerald-400" />}
                     </div>
                     <p className="mt-1 text-[11px] text-slate-400 leading-snug">{pt.desc}</p>
-                    <p className="mt-3 text-xs font-bold text-emerald-400">
+                    <p className="mt-2.5 sm:mt-3 text-xs font-bold text-emerald-400">
                       {formatRupiah(pt.ratePerM2)} / m²
                     </p>
                   </button>
@@ -122,7 +122,7 @@ export const Kalkulator = () => {
           </div>
 
           {/* 2. Luas Bangunan */}
-          <div className="mt-8 pt-6 border-t border-slate-800">
+          <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-slate-800">
             <div className="flex items-center justify-between">
               <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
                 2. Luas Bangunan (m²)
@@ -150,14 +150,14 @@ export const Kalkulator = () => {
               className="mt-4 w-full accent-emerald-500 cursor-pointer h-2 bg-slate-800 rounded-lg"
             />
 
-            <div className="mt-3 flex flex-wrap items-center gap-2">
-              <span className="text-xs text-slate-400">Ukuran Populer:</span>
+            <div className="mt-3 flex items-center gap-1.5 overflow-x-auto pb-1 sm:flex-wrap sm:pb-0">
+              <span className="text-xs text-slate-400 shrink-0">Ukuran Populer:</span>
               {quickSizes.map((sz) => (
                 <button
                   key={sz}
                   type="button"
                   onClick={() => setArea(sz)}
-                  className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition ${
+                  className={`shrink-0 rounded-lg px-2.5 py-1 text-xs font-semibold transition ${
                     area === sz
                       ? "bg-emerald-500 text-slate-950 font-bold"
                       : "bg-slate-800 text-slate-300 hover:bg-slate-700"
@@ -170,11 +170,11 @@ export const Kalkulator = () => {
           </div>
 
           {/* Hasil Estimasi */}
-          <div className="mt-8 rounded-xl bg-slate-900 p-6 border border-slate-800">
+          <div className="mt-6 sm:mt-8 rounded-xl bg-slate-900 p-4 sm:p-6 border border-slate-800">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <p className="text-xs text-slate-400">Estimasi Anggaran Awal</p>
-                <p className="mt-1 text-3xl font-bold text-white tracking-tight">
+                <p className="mt-1 text-2xl sm:text-3xl font-bold text-white tracking-tight">
                   {formatRupiah(totalEstimate)}
                 </p>
                 <p className="mt-1 text-xs text-slate-400">
@@ -186,7 +186,7 @@ export const Kalkulator = () => {
                 href={`https://wa.me/6281289969933?text=${waMessage}`}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-xs font-bold text-slate-950 transition hover:bg-emerald-400 shrink-0"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-xs sm:text-sm font-bold text-slate-950 transition hover:bg-emerald-400 active:scale-98 w-full sm:w-auto"
               >
                 <MessageCircle size={16} />
                 <span>Konsultasi Hasil Ini via WA</span>
@@ -194,18 +194,18 @@ export const Kalkulator = () => {
             </div>
 
             {/* Breakdown */}
-            <div className="mt-5 pt-4 border-t border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div className="mt-5 pt-4 border-t border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 text-xs">
               <div className="rounded-lg bg-slate-950/60 p-2.5 border border-slate-800">
-                <span className="text-slate-400">Material & Bahan (55%):</span>
-                <p className="font-bold text-white mt-0.5">{formatRupiah(materialCost)}</p>
+                <span className="text-slate-400 text-[11px] sm:text-xs">Material & Bahan (55%):</span>
+                <p className="font-bold text-white mt-0.5 text-xs sm:text-sm">{formatRupiah(materialCost)}</p>
               </div>
               <div className="rounded-lg bg-slate-950/60 p-2.5 border border-slate-800">
-                <span className="text-slate-400">Upah Tukang & Mandor (35%):</span>
-                <p className="font-bold text-white mt-0.5">{formatRupiah(laborCost)}</p>
+                <span className="text-slate-400 text-[11px] sm:text-xs">Upah Tukang & Mandor (35%):</span>
+                <p className="font-bold text-white mt-0.5 text-xs sm:text-sm">{formatRupiah(laborCost)}</p>
               </div>
               <div className="rounded-lg bg-slate-950/60 p-2.5 border border-slate-800">
-                <span className="text-slate-400">Pengawasan & Garansi (10%):</span>
-                <p className="font-bold text-white mt-0.5">{formatRupiah(managementCost)}</p>
+                <span className="text-slate-400 text-[11px] sm:text-xs">Pengawasan & Garansi (10%):</span>
+                <p className="font-bold text-white mt-0.5 text-xs sm:text-sm">{formatRupiah(managementCost)}</p>
               </div>
             </div>
 

@@ -28,9 +28,9 @@ export const Tentang = () => {
   ];
 
   return (
-    <section id="tentang" className="py-16 md:py-20 bg-white">
+    <section id="tentang" className="py-12 sm:py-16 md:py-20 bg-white">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-14 items-center">
+        <div className="grid gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-14 items-center">
           {/* Left Text */}
           <div className="lg:col-span-7">
             <span className="text-xs font-bold uppercase tracking-wider text-emerald-600">
@@ -39,31 +39,31 @@ export const Tentang = () => {
             <h2 className="mt-2 text-2xl sm:text-3xl font-bold text-slate-900 md:text-4xl">
               Kenapa Memilih Imperial Serpong?
             </h2>
-            <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+            <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
               Kami adalah kontraktor spesialis pembangunan rumah tinggal, renovasi total, dan ruko di kawasan BSD, Gading Serpong, Tangerang, dan sekitarnya. Fokus kami adalah kualitas pengerjaan rapi dan kepuasan pemilik rumah.
             </p>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <div className="mt-6 sm:mt-8 grid gap-2.5 sm:gap-4 sm:grid-cols-2">
               {points.map((pt, idx) => {
                 const Icon = pt.icon;
                 return (
-                  <div key={idx} className="rounded-xl border border-slate-100 bg-slate-50/70 p-4">
+                  <div key={idx} className="rounded-xl border border-slate-100 bg-slate-50/70 p-3.5 sm:p-4">
                     <div className="flex items-center gap-2.5">
                       <div className="rounded-lg bg-emerald-100 p-2 text-emerald-700 shrink-0">
                         <Icon size={16} />
                       </div>
-                      <h4 className="font-bold text-sm text-slate-900">{pt.title}</h4>
+                      <h4 className="font-bold text-xs sm:text-sm text-slate-900">{pt.title}</h4>
                     </div>
-                    <p className="mt-2 text-xs text-slate-600 leading-relaxed">{pt.desc}</p>
+                    <p className="mt-1.5 sm:mt-2 text-[11px] sm:text-xs text-slate-600 leading-relaxed">{pt.desc}</p>
                   </div>
                 );
               })}
             </div>
 
-            <div className="mt-8">
+            <div className="mt-6 sm:mt-8">
               <a
                 href="#penawaran"
-                className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-xs font-bold text-white transition hover:bg-emerald-600"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-xs font-bold text-white transition hover:bg-emerald-600 active:scale-98"
               >
                 <span>Minta Penawaran Proyek</span>
                 <ArrowRight size={15} />

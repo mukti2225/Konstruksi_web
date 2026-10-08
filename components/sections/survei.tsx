@@ -115,20 +115,20 @@ export const JadwalSurvei = () => {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-8 space-y-5 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
-          <fieldset disabled={!sudahLogin || statusKirim === "loading"} className="space-y-5 disabled:opacity-60">
+        <form onSubmit={handleSubmit} className="mt-6 sm:mt-8 space-y-4 sm:space-y-5 rounded-2xl border border-slate-200 bg-white p-4 sm:p-8 shadow-sm">
+          <fieldset disabled={!sudahLogin || statusKirim === "loading"} className="space-y-4 sm:space-y-5 disabled:opacity-60">
             {/* Layanan */}
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                 1. Kategori Layanan
               </label>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
                 {LAYANAN.map((l) => (
                   <button
                     key={l}
                     type="button"
                     onClick={() => setLayanan(l)}
-                    className={`rounded-xl border px-2.5 py-2.5 text-xs font-semibold transition ${
+                    className={`rounded-xl border px-1.5 py-2.5 sm:px-2.5 text-[11px] sm:text-xs font-semibold transition text-center leading-tight ${
                       layanan === l
                         ? "border-emerald-500 bg-emerald-50 text-emerald-800"
                         : "border-slate-200 text-slate-600 hover:bg-slate-50"
@@ -146,7 +146,7 @@ export const JadwalSurvei = () => {
                 <Calendar size={14} className="text-emerald-600" />
                 2. Pilih Tanggal
               </label>
-              <div className="flex gap-2 overflow-x-auto pb-1.5 scroll-smooth">
+              <div className="flex gap-2 overflow-x-auto pb-2 scroll-smooth -mx-1 px-1">
                 {DAFTAR_HARI.map((h) => (
                   <button
                     key={h.iso}
@@ -156,15 +156,15 @@ export const JadwalSurvei = () => {
                       setTanggal(h.iso);
                       setJam(null);
                     }}
-                    className={`flex flex-col items-center rounded-xl border px-3 py-2 text-center transition shrink-0 min-w-14 disabled:opacity-40 disabled:cursor-not-allowed ${
+                    className={`flex flex-col items-center rounded-xl border px-2.5 py-2 text-center transition shrink-0 min-w-13 sm:min-w-14 disabled:opacity-40 disabled:cursor-not-allowed ${
                       tanggal === h.iso
                         ? "border-emerald-500 bg-emerald-600 text-white font-bold"
                         : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-white"
                     }`}
                   >
-                    <span className="text-[10px] uppercase">{h.hari}</span>
-                    <span className="text-base font-bold my-0.5">{h.tanggal}</span>
-                    <span className="text-[10px]">{h.bulan}</span>
+                    <span className="text-[9px] sm:text-[10px] uppercase">{h.hari}</span>
+                    <span className="text-sm sm:text-base font-bold my-0.5">{h.tanggal}</span>
+                    <span className="text-[9px] sm:text-[10px]">{h.bulan}</span>
                   </button>
                 ))}
               </div>
@@ -177,13 +177,13 @@ export const JadwalSurvei = () => {
                   <Clock size={14} className="text-emerald-600" />
                   3. Pilih Jam
                 </label>
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-4 gap-1.5 sm:gap-2">
                   {JAM_SLOT.map((j) => (
                     <button
                       key={j}
                       type="button"
                       onClick={() => setJam(j)}
-                      className={`rounded-xl border py-2 text-xs font-bold transition ${
+                      className={`rounded-xl border py-2 text-[11px] sm:text-xs font-bold transition ${
                         jam === j
                           ? "border-emerald-500 bg-emerald-500 text-white"
                           : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-white"

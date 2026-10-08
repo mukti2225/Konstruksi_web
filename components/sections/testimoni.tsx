@@ -153,7 +153,7 @@ export const Testimoni = () => {
             <div
               key={t.id}
               data-card
-              className="flex flex-col justify-between w-[85%] shrink-0 snap-start rounded-2xl border border-slate-200 bg-white p-6 shadow-xs sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)]"
+              className="flex flex-col justify-between w-[85%] shrink-0 snap-start rounded-2xl border border-slate-200 bg-white p-4 sm:p-6 shadow-xs sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)]"
             >
               <div>
                 <div className="flex items-center gap-1 text-amber-400">
@@ -162,18 +162,18 @@ export const Testimoni = () => {
                   ))}
                 </div>
 
-                <p className="mt-3.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                <p className="mt-3 text-xs sm:text-sm text-slate-700 leading-relaxed">
                   &ldquo;{t.text}&rdquo;
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-3">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-100 font-bold text-xs text-emerald-800">
+              <div className="mt-5 sm:mt-6 pt-3.5 sm:pt-4 border-t border-slate-100 flex items-center gap-2.5 sm:gap-3">
+                <div className="flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-full bg-emerald-100 font-bold text-xs text-emerald-800">
                   {t.name.charAt(0)}
                 </div>
                 <div className="min-w-0">
                   <h4 className="font-bold text-slate-900 text-xs truncate">{t.name}</h4>
-                  <p className="text-[11px] text-slate-500 truncate">{t.role}</p>
+                  <p className="text-[10px] sm:text-[11px] text-slate-500 truncate">{t.role}</p>
                   {t.location && (
                     <p className="text-[10px] text-emerald-600 truncate flex items-center gap-1">
                       <MapPin size={10} /> {t.location}
@@ -182,6 +182,13 @@ export const Testimoni = () => {
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+
+        {/* Mobile Swipe Dot Indicator */}
+        <div className="mt-4 flex items-center justify-center gap-1.5 sm:hidden">
+          {items.map((_, i) => (
+            <span key={i} className="h-1.5 w-1.5 rounded-full bg-slate-300" />
           ))}
         </div>
       </div>

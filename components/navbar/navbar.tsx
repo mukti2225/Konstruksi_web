@@ -25,37 +25,6 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full">
-      {/* Top Announcement Bar */}
-      <div className="bg-slate-900 px-4 py-2 text-xs text-slate-300 border-b border-slate-800">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-slate-300">
-              Gratis Survei Lokasi & Konsultasi RAB • Area BSD, Tangerang & Jaksel
-            </span>
-          </div>
-          <div className="hidden sm:flex items-center gap-4 text-slate-300">
-            <a
-              href="tel:081289969933"
-              className="flex items-center gap-1.5 hover:text-emerald-400 transition-colors"
-            >
-              <Phone size={12} />
-              <span>0812-8996-9933</span>
-            </a>
-            <span className="text-slate-600">|</span>
-            <a
-              href="https://wa.me/6281289969933"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors font-medium"
-            >
-              <MessageCircle size={13} />
-              <span>Chat WhatsApp</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Main Navbar */}
       <nav
         className={`transition-all duration-200 ${
@@ -160,30 +129,68 @@ export default function Navbar() {
 
         {/* Mobile Drawer */}
         <div
-          className={`overflow-hidden border-t border-slate-100 bg-white transition-all duration-200 lg:hidden ${
-            isOpen ? "max-h-96 py-4 opacity-100 shadow-lg" : "max-h-0 opacity-0"
+          className={`overflow-y-auto border-t border-slate-100 bg-white transition-all duration-300 ease-in-out lg:hidden ${
+            isOpen ? "max-h-[85vh] py-4 opacity-100 shadow-xl" : "max-h-0 py-0 opacity-0 pointer-events-none"
           }`}
         >
           <div className="flex flex-col space-y-1 px-4">
             <NavLinks mobile onClick={() => setIsOpen(false)} />
-            <div className="pt-3 mt-3 border-t border-slate-100 flex flex-col gap-2">
+
+            <div className="pt-3 mt-3 border-t border-slate-100 flex flex-col gap-2.5">
               <a
                 href="https://wa.me/6281289969933?text=Halo%20Imperial%20Serpong,%20saya%20ingin%20konsultasi%20renovasi/bangun%20rumah."
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 py-3 text-xs font-bold text-white"
+                className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 py-3 text-xs font-bold text-white shadow-sm active:scale-98 transition"
                 onClick={() => setIsOpen(false)}
               >
                 <MessageCircle size={16} />
                 <span>Konsultasi via WhatsApp</span>
               </a>
-              <Link
-                href="/login"
-                className="flex items-center justify-center rounded-xl border border-slate-200 py-2.5 text-xs font-semibold text-slate-700"
-                onClick={() => setIsOpen(false)}
-              >
-                Login Akun
-              </Link>
+
+              {status === "authenticated" ? (
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 space-y-2.5">
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-600 text-xs font-bold text-white shrink-0">
+                      {session?.user?.name?.charAt(0) || "U"}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-bold text-slate-900 truncate">{session?.user?.name}</p>
+                      <p className="text-[10px] font-semibold text-emerald-700 uppercase tracking-wider">
+                        {session?.user?.role || "Pengguna"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {session?.user?.role === "admin" && (
+                    <Link
+                      href="/dashboard"
+                      className="flex items-center justify-center rounded-lg bg-slate-900 py-2 text-xs font-semibold text-white transition hover:bg-emerald-600"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Dashboard Admin
+                    </Link>
+                  )}
+
+                  <button
+                    onClick={() => {
+                      setIsOpen(false);
+                      handleLogout();
+                    }}
+                    className="w-full rounded-lg border border-rose-200 bg-white py-2 text-xs font-semibold text-rose-600 hover:bg-rose-50 transition"
+                  >
+                    Keluar / Logout
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  href="/login"
+                  className="flex items-center justify-center rounded-xl border border-slate-200 py-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Login Akun
+                </Link>
+              )}
             </div>
           </div>
         </div>

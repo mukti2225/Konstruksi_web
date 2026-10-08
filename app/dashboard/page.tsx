@@ -158,41 +158,42 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-6">
       {/* Simple Clean Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4 sm:pb-5">
         <div>
-          <h1 className="text-xl font-bold tracking-tight text-slate-900 md:text-2xl">
+          <h1 className="text-lg font-bold tracking-tight text-slate-900 sm:text-xl md:text-2xl">
             Ringkasan Operasional
           </h1>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-slate-500 mt-0.5 sm:mt-1">
             Pantau jadwal survei pelanggan, portofolio bangunan, dan ulasan klien.
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        {/* Quick action buttons: 2 cols on mobile, flex wrap on desktop */}
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2">
           <Link
             href="/dashboard/proyek"
-            className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-3.5 py-2 text-xs font-semibold text-white shadow-xs hover:bg-emerald-700 transition"
+            className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-600 px-3 py-2 text-xs font-semibold text-white shadow-xs hover:bg-emerald-700 transition"
           >
             <HardHat size={14} />
             <span>Proyek & SPK</span>
           </Link>
           <Link
             href="/dashboard/rab"
-            className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-3.5 py-2 text-xs font-semibold text-white shadow-xs hover:bg-slate-800 transition"
+            className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 px-3 py-2 text-xs font-semibold text-white shadow-xs hover:bg-slate-800 transition"
           >
             <FileSpreadsheet size={14} />
             <span>Pembuatan RAB</span>
           </Link>
           <Link
             href="/dashboard/portfolio"
-            className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-3.5 py-2 text-xs font-semibold text-white shadow-xs hover:bg-emerald-700 transition"
+            className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-600 px-3 py-2 text-xs font-semibold text-white shadow-xs hover:bg-emerald-700 transition"
           >
             <Plus size={15} />
             <span>Tambah Proyek</span>
           </Link>
           <Link
             href="/dashboard/survei"
-            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition"
+            className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition"
           >
             <span>Semua Jadwal</span>
           </Link>
@@ -205,8 +206,8 @@ export default async function DashboardPage() {
         </div>
       ) : (
         <>
-          {/* 4 Clean Stat Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* 4 Clean Stat Cards: 2 cols on mobile, 4 cols on desktop */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
             <StatCard
               title="Survei Hari Ini"
               value={formatAngka(stats?.bookingHariIni)}
@@ -238,9 +239,9 @@ export default async function DashboardPage() {
           </div>
 
           {/* Dual Column: Jadwal Survei Terbaru & Portfolio Terkini */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6">
             {/* Left: Recent Bookings Table (7 cols) */}
-            <div className="lg:col-span-7 rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
+            <div className="lg:col-span-7 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-xs">
               <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                 <div>
                   <h3 className="text-sm font-bold text-slate-900">Jadwal Survei Terbaru</h3>

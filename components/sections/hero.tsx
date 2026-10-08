@@ -57,32 +57,34 @@ export const Hero = () => {
           </div>
 
           {/* Action Buttons */}
-          <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3 sm:justify-center lg:justify-start">
+          <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-3 sm:justify-center lg:justify-start">
             <a
               href="https://wa.me/6281289969933?text=Halo%20Imperial%20Serpong,%20saya%20ingin%20konsultasi%20renovasi/bangun%20rumah."
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 py-3.5 text-sm font-bold text-slate-950 shadow-md transition hover:bg-emerald-400"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-3.5 text-xs sm:text-sm font-bold text-slate-950 shadow-md transition hover:bg-emerald-400 active:scale-98"
             >
               <MessageCircle size={18} />
               <span>Konsultasi Gratis via WhatsApp</span>
             </a>
 
-            <a
-              href="#kalkulator"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-900 px-5 py-3.5 text-sm font-semibold text-slate-200 transition hover:bg-slate-800 hover:text-white"
-            >
-              <Calculator size={17} className="text-emerald-400" />
-              <span>Estimasi Biaya</span>
-            </a>
+            <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center sm:gap-3">
+              <a
+                href="#kalkulator"
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-700 bg-slate-900 px-3 py-3 text-xs sm:text-sm font-semibold text-slate-200 transition hover:bg-slate-800 hover:text-white"
+              >
+                <Calculator size={15} className="text-emerald-400 shrink-0" />
+                <span>Estimasi Biaya</span>
+              </a>
 
-            <Link
-              href="/lacak-proyek"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-500/40 bg-emerald-950/40 px-5 py-3.5 text-sm font-semibold text-emerald-300 transition hover:bg-emerald-900/60"
-            >
-              <HardHat size={17} className="text-emerald-400" />
-              <span>Lacak Proyek</span>
-            </Link>
+              <Link
+                href="/lacak-proyek"
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-emerald-500/40 bg-emerald-950/40 px-3 py-3 text-xs sm:text-sm font-semibold text-emerald-300 transition hover:bg-emerald-900/60"
+              >
+                <HardHat size={15} className="text-emerald-400 shrink-0" />
+                <span>Lacak Proyek</span>
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -99,18 +101,18 @@ export const Hero = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
 
-            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-white">
-              <div>
-                <p className="font-semibold text-slate-200">Proyek Renovasi & Bangun Baru</p>
-                <p className="text-[11px] text-emerald-400">BSD City, Tangerang & Jaksel</p>
+            <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex items-center justify-between text-xs text-white">
+              <div className="min-w-0 pr-2">
+                <p className="font-semibold text-slate-200 text-xs sm:text-sm truncate">Proyek Renovasi & Bangun</p>
+                <p className="text-[10px] sm:text-[11px] text-emerald-400 truncate">BSD City, Tangerang & Jaksel</p>
               </div>
-              <span className="rounded-lg bg-emerald-500/20 px-2.5 py-1 text-xs font-bold text-emerald-300 border border-emerald-500/30">
+              <span className="shrink-0 rounded-lg bg-emerald-500/20 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[11px] sm:text-xs font-bold text-emerald-300 border border-emerald-500/30">
                 150+ Selesai
               </span>
             </div>
           </div>
 
-          {/* Single Subtle Floating Card */}
+          {/* Desktop Floating Badge */}
           <div className="animate-float absolute -bottom-4 -left-3 sm:-left-5 rounded-xl border border-slate-800 bg-slate-900/95 p-3 shadow-xl backdrop-blur-md hidden sm:flex items-center gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500 text-slate-950">
               <ShieldCheck size={22} />
@@ -119,6 +121,12 @@ export const Hero = () => {
               <p className="text-xs font-bold text-white">Garansi Resmi 10 Tahun</p>
               <p className="text-[11px] text-slate-400">Struktur & Anti Bocor</p>
             </div>
+          </div>
+
+          {/* Mobile Badge */}
+          <div className="mt-3 flex sm:hidden items-center justify-center gap-2 rounded-xl border border-slate-800 bg-slate-900/90 p-2.5 shadow-sm text-center">
+            <ShieldCheck size={16} className="text-emerald-400 shrink-0" />
+            <span className="text-xs font-semibold text-slate-200">Garansi Struktur 10 Tahun & Anti Bocor</span>
           </div>
         </div>
       </div>
