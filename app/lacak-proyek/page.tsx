@@ -4,8 +4,6 @@ import { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import Navbar from "@/components/navbar/navbar";
-import Footer from "@/components/footer";
 import {
   Search,
   CheckCircle2,
@@ -27,6 +25,7 @@ import {
   FileCheck,
   Building2,
   ArrowRight,
+  ArrowLeft,
 } from "lucide-react";
 import {
   ProjectItem,
@@ -102,6 +101,45 @@ function LacakProyekContent() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+      {/* Top Brand Header */}
+      <header className="border-b border-slate-800 bg-slate-950 px-4 py-3.5 text-white">
+        <div className="mx-auto flex max-w-6xl items-center justify-between">
+          <Link href="/" className="flex items-center gap-2.5">
+            <div className="relative h-8 w-8 overflow-hidden rounded-lg bg-emerald-50 ring-1 ring-emerald-500/30">
+              <Image src="/image/logo.png" alt="Imperial Serpong" fill sizes="32px" className="object-contain p-1" priority />
+            </div>
+            <div>
+              <span className="text-sm font-bold tracking-tight text-white">
+                Imperial <span className="text-emerald-400">Serpong</span>
+              </span>
+              <span className="hidden text-[9px] font-semibold tracking-wider text-emerald-400/80 uppercase sm:block">
+                Portal Pemantauan Klien
+              </span>
+            </div>
+          </Link>
+
+          <div className="flex items-center gap-2.5">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-900 px-3.5 py-1.5 text-xs font-semibold text-slate-300 hover:border-slate-500 hover:text-white transition"
+            >
+              <ArrowLeft size={13} />
+              <span>Kembali ke Beranda</span>
+            </Link>
+
+            <a
+              href="https://wa.me/6281289969933"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-xl bg-emerald-500 px-3.5 py-1.5 text-xs font-bold text-slate-950 hover:bg-emerald-400 transition"
+            >
+              <MessageCircle size={13} />
+              <span>Bantuan WA</span>
+            </a>
+          </div>
+        </div>
+      </header>
+
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-slate-900 py-12 md:py-16 text-white">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,#059669_0%,transparent_60%)] opacity-30" />
@@ -198,6 +236,7 @@ function LacakProyekContent() {
                       src={activeProject.featuredImage}
                       alt={activeProject.projectName}
                       fill
+                      sizes="80px"
                       className="object-cover"
                     />
                   </div>
@@ -475,6 +514,7 @@ function LacakProyekContent() {
                               src={src}
                               alt={log.title}
                               fill
+                              sizes="(max-width: 640px) 50vw, 33vw"
                               className="object-cover transition duration-300 group-hover:scale-105"
                             />
                             <div className="absolute inset-0 bg-slate-950/0 group-hover:bg-slate-950/40 transition flex items-center justify-center">
@@ -654,6 +694,7 @@ function LacakProyekContent() {
               src={selectedPhoto}
               alt="Dokumentasi Proyek"
               fill
+              sizes="90vw"
               className="object-contain"
             />
             <button
@@ -665,6 +706,18 @@ function LacakProyekContent() {
           </div>
         </div>
       )}
+
+      {/* Clean Mini Footer */}
+      <footer className="border-t border-slate-200 bg-white py-6 text-center text-xs text-slate-500">
+        <div className="mx-auto max-w-6xl px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p>© {new Date().getFullYear()} CV. Imperial Serpong Perkasa. Hak Cipta Dilindungi.</p>
+          <div className="flex items-center gap-4 text-xs">
+            <Link href="/" className="hover:text-emerald-600 transition font-medium">Beranda</Link>
+            <Link href="/#layanan" className="hover:text-emerald-600 transition font-medium">Layanan</Link>
+            <Link href="/#penawaran" className="hover:text-emerald-600 transition font-medium">Kontak</Link>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
