@@ -9,6 +9,7 @@ import { Stats } from "@/components/sections/stats";
 import { JadwalSurvei } from "@/components/sections/survei";
 
 export default function Home() {
+  // Trigger update for modernized UI and real-time looping animations
   return (
     <main className="overflow-x-hidden">
       <Hero />

@@ -1,36 +1,102 @@
 "use client";
 
-import { HomeIcon, Ruler, PaintBucket, Wrench, Zap, ArrowRight, MessageCircle } from "lucide-react";
+import { Home, Layers, Ruler, PaintBucket, Wrench, Zap, ArrowRight, MessageCircle } from "lucide-react";
 
 export const Layanan = () => {
   const services = [
-    { icon: <HomeIcon size={32} />, title: "Renovasi Rumah", desc: "Renovasi total atau sebagian dengan desain modern dan material berkualitas." },
-    { icon: <Ruler size={32} />, title: "Pemasangan Keramik", desc: "Pemasangan keramik dinding & lantai dengan presisi tinggi dan hasil rapi." },
-    { icon: <PaintBucket size={32} />, title: "Pengecatan Bangunan", desc: "Pengecatan interior & eksterior dengan cat berkualitas tahan lama." },
-    { icon: <Wrench size={32} />, title: "Pembuatan Kanopi", desc: "Kanopi baja ringan, besi, atau kayu dengan desain sesuai kebutuhan." },
-    { icon: <HomeIcon size={32} />, title: "Plafon Gypsum", desc: "Plafon gypsum dengan model drop ceiling, minimalis, dan elegan." },
-    { icon: <Zap size={32} />, title: "Instalasi Listrik", desc: "Instalasi listrik sesuai standar SNI, aman, dan terpercaya." },
+    {
+      icon: Home,
+      title: "Bangun Rumah Baru",
+      price: "Mulai Rp 3,8 Juta / m²",
+      desc: "Pembangunan rumah dari pondasi hingga finishing siap huni dengan desain arsitektur dan spesifikasi SNI.",
+    },
+    {
+      icon: Layers,
+      title: "Renovasi Rumah Total & Parsial",
+      price: "Mulai Rp 2,5 Juta / m²",
+      desc: "Penambahan lantai (dak cor), perubahan tata ruang, peremajaan fasad, dan perbaikan atap bocor.",
+    },
+    {
+      icon: Ruler,
+      title: "Pemasangan Granit & Keramik",
+      price: "Mulai Rp 120 Ribu / m²",
+      desc: "Pemasangan granit tile lantai & keramik dinding dengan levelling presisi dan nat rapi tahan rembes.",
+    },
+    {
+      icon: PaintBucket,
+      title: "Pengecatan Interior & Eksterior",
+      price: "Mulai Rp 45 Ribu / m²",
+      desc: "Pengecatan dinding dengan persiapan plamir, cat dasar anti alkali, dan cat tahan cuaca (Dulux/Nippon).",
+    },
+    {
+      icon: Wrench,
+      title: "Kanopi & Pekerjaan Besi",
+      price: "Mulai Rp 450 Ribu / m²",
+      desc: "Pembuatan kanopi carport (alderon, kaca tempered, solarflat), pagar minimalis, dan railing tangga.",
+    },
+    {
+      icon: Zap,
+      title: "Plafon Gypsum & Kelistrikan",
+      price: "Menyesuaikan Volume",
+      desc: "Plafon drop ceiling minimalis, lampu tersembunyi (warm ambient), dan peremajaan instalasi kabel SNI.",
+    },
   ];
 
   return (
-    <section id="layanan" className="py-14 md:py-14 bg-slate-50">
+    <section id="layanan" className="py-16 md:py-20 bg-slate-50/60">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="text-center max-w-2xl mx-auto">
-          <span className="text-sm font-semibold uppercase tracking-wider text-green-500">Layanan</span>
-          <h2 className="mt-2 text-3xl font-extrabold md:text-4xl">
-            Solusi Lengkap <span className="text-green-500">Kebutuhan</span> Bangunan
+          <span className="text-xs font-bold uppercase tracking-wider text-emerald-600">
+            Layanan Kami
+          </span>
+          <h2 className="mt-2 text-2xl sm:text-3xl font-bold text-slate-900 md:text-4xl">
+            Solusi Lengkap Bangun & Renovasi
           </h2>
-          <p className="mt-3 text-slate-600">Kami menyediakan berbagai layanan konstruksi untuk mewujudkan rumah impian Anda.</p>
+          <p className="mt-2.5 text-sm text-slate-600">
+            Dikerjakan langsung oleh tukang spesialis di bawah pengawasan mandor berpengalaman.
+          </p>
         </div>
 
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((svc, id) => (
-            <div key={id} className="group rounded-2xl bg-white p-6 shadow-sm transition-all hover:-translate-y-2 hover:shadow-md border border-transparent hover:border-green-200">
-              <div className="mb-4 inline-flex rounded-xl bg-green-50 p-3 text-green-500 transition-colors group-hover:bg-green-500 group-hover:text-white">{svc.icon}</div>
-              <h3 className="text-lg font-bold text-slate-800">{svc.title}</h3>
-              <p className="mt-2 text-sm text-slate-500 leading-relaxed">{svc.desc}</p>
-            </div>
-          ))}
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((svc, idx) => {
+            const Icon = svc.icon;
+            return (
+              <div
+                key={idx}
+                className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-emerald-300 hover:shadow-md"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <div className="rounded-xl bg-emerald-50 p-2.5 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                      <Icon size={22} />
+                    </div>
+                    <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-bold text-slate-700">
+                      {svc.price}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-4 text-base font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                    {svc.title}
+                  </h3>
+                  <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {svc.desc}
+                  </p>
+                </div>
+
+                <div className="mt-5 pt-4 border-t border-slate-100">
+                  <a
+                    href={`https://wa.me/6281289969933?text=Halo%20Imperial%20Serpong,%20saya%20tertarik%20dengan%20layanan%20${encodeURIComponent(svc.title)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-between text-xs font-bold text-emerald-600 hover:text-emerald-700"
+                  >
+                    <span>Konsultasi Layanan Ini</span>
+                    <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                  </a>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

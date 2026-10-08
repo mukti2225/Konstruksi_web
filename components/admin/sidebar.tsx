@@ -1,16 +1,32 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
-import { LayoutDashboard, Image as ImageIcon, LogOut, Hammer, X } from "lucide-react";
+import {
+  LayoutDashboard,
+  FolderKanban,
+  MessageSquareQuote,
+  CalendarDays,
+  Users,
+  FileSpreadsheet,
+  LogOut,
+  ExternalLink,
+  X,
+  ShieldCheck,
+  ChevronRight,
+  HardHat,
+} from "lucide-react";
 
 const menu = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/dashboard/portfolio", label: "Portfolio", icon: ImageIcon },
-  { href: "/dashboard/testimoni", label: "Testimoni", icon: ImageIcon },
-  { href: "/dashboard/survei", label: "Jadwal Survei", icon: ImageIcon },
-  { href: "/dashboard/user", label: "Pengguna", icon: ImageIcon },
+  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard, exact: true },
+  { href: "/dashboard/rab", label: "Pembuatan RAB", icon: FileSpreadsheet },
+  { href: "/dashboard/proyek", label: "Proyek & SPK", icon: HardHat },
+  { href: "/dashboard/survei", label: "Jadwal Survei", icon: CalendarDays },
+  { href: "/dashboard/portfolio", label: "Portfolio Proyek", icon: FolderKanban },
+  { href: "/dashboard/testimoni", label: "Ulasan & Testimoni", icon: MessageSquareQuote },
+  { href: "/dashboard/user", label: "Kelola Pengguna", icon: Users },
 ];
 
 interface SidebarProps {
@@ -21,9 +37,8 @@ interface SidebarProps {
 
 export default function Sidebar({ user, open = false, onClose }: SidebarProps) {
   const pathname = usePathname();
-  const router = useRouter();
 
-  const initials = (user?.name ?? "?")
+  const initials = (user?.name ?? "Admin")
     .split(" ")
     .map((n: string) => n[0])
     .slice(0, 2)
@@ -32,78 +47,138 @@ export default function Sidebar({ user, open = false, onClose }: SidebarProps) {
 
   return (
     <>
-      {/* Overlay Mobile */}
-      {open && <div onClick={onClose} className="fixed inset-0 z-40 bg-black/40 lg:hidden" />}
+      {/* Mobile Backdrop Overlay */}
+      {open && (
+        <div
+          onClick={onClose}
+          className="fixed inset-0 z-40 bg-slate-950/60 backdrop-blur-xs transition-opacity lg:hidden"
+        />
+      )}
 
-      <aside className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-hidden border-r border-[#E7E5E0] bg-white transition-transform duration-200 ease-in-out lg:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full"}`}>
-        {/* Header */}
-        <div className="flex items-center justify-between px-5 py-6 border-b border-[#E7E5E0]">
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#14181A]">
-              <Hammer className="h-5 w-5 text-[#1E9E56]" />
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 flex w-72 flex-col overflow-hidden border-r border-slate-200/80 bg-white transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+          open ? "translate-x-0 shadow-2xl" : "-translate-x-full"
+        }`}
+      >
+        {/* Brand Header */}
+        <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100">
+          <Link href="/dashboard" className="flex items-center gap-3">
+            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100/70 p-1.5 ring-1 ring-emerald-500/30 shadow-xs">
+              <Image src="/image/logo.png" alt="Imperial Serpong" fill sizes="40px" className="object-contain p-1" priority />
             </div>
 
             <div>
-              <p className="text-base font-semibold text-[#14181A]">{user?.name}</p>
-              <p className="text-xs uppercase text-[#9CA3AF]">Jasa Renovasi</p>
+              <div className="flex items-center gap-1.5">
+                <span className="text-base font-bold tracking-tight text-slate-900">
+                  Imperial <span className="text-emerald-600">Serpong</span>
+                </span>
+              </div>
+              <span className="inline-block rounded-full bg-emerald-100/80 px-2 py-0.2 text-[9px] font-bold text-emerald-800 tracking-wider uppercase">
+                ADMIN PANEL
+              </span>
             </div>
-          </div>
+          </Link>
 
-          <button onClick={onClose} className="rounded-lg p-2 text-[#9CA3AF] hover:bg-[#F5F5F5] lg:hidden">
-            <X className="h-5 w-5" />
+          <button
+            onClick={onClose}
+            className="rounded-xl p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 lg:hidden"
+            aria-label="Tutup Menu"
+          >
+            <X size={20} />
           </button>
         </div>
 
-        {/* Menu */}
-        <nav className="flex-1 min-h-0 overflow-y-auto px-3 py-4">
-          <p className="mb-3 px-3 font-mono text-[11px] uppercase tracking-wider text-[#B0AEA6]">Menu</p>
+        {/* Navigation Menu */}
+        <nav className="flex-1 min-h-0 overflow-y-auto px-4 py-5 space-y-1">
+          <div className="px-3 mb-2 flex items-center justify-between">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+              Menu Utama
+            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          </div>
 
-          <div className="space-y-1">
-            {menu.map((item) => {
-              const isActive = pathname === item.href || (item.href !== "/dashboard" && pathname.startsWith(item.href));
+          {menu.map((item) => {
+            const isActive = item.exact
+              ? pathname === item.href
+              : pathname === item.href || pathname.startsWith(item.href);
 
-              const Icon = item.icon;
+            const Icon = item.icon;
 
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={onClose}
-                  className={`group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition ${isActive ? "bg-[#E6F5EC] text-[#1E9E56]" : "text-[#4B5563] hover:bg-[#FAFAF8] hover:text-[#14181A]"}`}
-                >
-                  <Icon className={`h-4 w-4 ${isActive ? "text-[#1E9E56]" : "text-[#9CA3AF] group-hover:text-[#14181A]"}`} />
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={onClose}
+                className={`group relative flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-semibold transition-all duration-200 ${
+                  isActive
+                    ? "bg-emerald-500 text-white shadow-md shadow-emerald-500/25"
+                    : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                }`}
+              >
+                <Icon
+                  size={18}
+                  className={`transition-transform duration-200 group-hover:scale-110 ${
+                    isActive ? "text-white" : "text-slate-400 group-hover:text-emerald-600"
+                  }`}
+                />
 
-                  <span className="flex-1">{item.label}</span>
+                <span className="flex-1">{item.label}</span>
 
-                  {isActive && <span className="h-2 w-2 rounded-full bg-[#1E9E56]" />}
-                </Link>
-              );
-            })}
+                {isActive ? (
+                  <ChevronRight size={16} className="text-emerald-100" />
+                ) : (
+                  <ChevronRight size={14} className="text-transparent group-hover:text-slate-400 transition-colors" />
+                )}
+              </Link>
+            );
+          })}
+
+          {/* Quick link to public website */}
+          <div className="pt-4 mt-4 border-t border-slate-100">
+            <span className="block px-3 mb-2 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+              Akses Cepat
+            </span>
+            <Link
+              href="/"
+              target="_blank"
+              className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50/60 px-3.5 py-2.5 text-xs font-semibold text-slate-700 transition hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700"
+            >
+              <div className="flex items-center gap-2">
+                <ExternalLink size={15} className="text-emerald-600" />
+                <span>Lihat Website Utama</span>
+              </div>
+              <span className="text-[10px] text-slate-400">Buka Tab</span>
+            </Link>
           </div>
         </nav>
 
-        {/* Footer */}
-        <div className="border-t flex gap-4 justify-between border-[#E7E5E0] p-4 ">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#14181A] text-xs font-semibold text-white">{initials}</div>
+        {/* User Profile & Logout Footer */}
+        <div className="border-t border-slate-100 p-4 bg-slate-50/50">
+          <div className="flex items-center justify-between gap-3 rounded-2xl bg-white p-3 border border-slate-200/80 shadow-xs">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 text-xs font-bold text-white shadow-xs">
+                {initials}
+              </div>
 
-            <div className="min-w-0">
-              <p className="truncate text-sm font-medium text-[#14181A]">{user?.name}</p>
-
-              <p className="truncate font-mono text-[11px] uppercase tracking-wider text-[#9CA3AF]">{user?.role}</p>
+              <div className="min-w-0">
+                <p className="truncate text-xs font-bold text-slate-900">{user?.name || "Administrator"}</p>
+                <div className="flex items-center gap-1">
+                  <ShieldCheck size={12} className="text-emerald-500" />
+                  <span className="truncate text-[10px] font-semibold uppercase text-emerald-600">
+                    {user?.role || "Admin"}
+                  </span>
+                </div>
+              </div>
             </div>
+
+            <button
+              onClick={() => signOut({ callbackUrl: "/login" })}
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-slate-400 transition hover:bg-rose-50 hover:text-rose-600"
+              title="Logout"
+            >
+              <LogOut size={16} />
+            </button>
           </div>
-
-          <button onClick={() => signOut({ callbackUrl: "/login" })} className="items-center px-3 py-2 text-sm font-medium text-[#6B7280] transition hover:border-[#FCA5A5] hover:bg-[#FDECEC] hover:text-[#DC2626]">
-            <LogOut className="h-4 w-4" />
-          </button>
-
-          {/* <button
-            onClick={() => router.push("/")}
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg border border-[#E7E5E0] px-3 py-2 text-sm font-medium text-[#6B7280] transition hover:border-[#FCA5A5] hover:bg-[#FDECEC] hover:text-[#DC2626]"
-          >
-            <div> kembali</div>
-          </button> */}
         </div>
       </aside>
     </>

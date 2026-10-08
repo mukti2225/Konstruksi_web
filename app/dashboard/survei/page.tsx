@@ -308,7 +308,7 @@ function KartuStatistik({ label, nilai, aksen }: { label: string; nilai: number;
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
       <p className="text-xs font-medium text-slate-500">{label}</p>
-      <p className={`mt-1.5 text-2xl font-extrabold ${warna}`}>{nilai}</p>
+      <p className={`mt-1.5 text-2xl font-bold ${warna}`}>{nilai}</p>
     </div>
   );
 }

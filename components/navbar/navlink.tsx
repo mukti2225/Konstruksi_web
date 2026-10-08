@@ -9,38 +9,62 @@ interface NavLinksProps {
 }
 
 const navLinks = [
-  { href: "#beranda", label: "Beranda" },
-  { href: "#tentang", label: "Tentang" },
-  { href: "#layanan", label: "Layanan" },
-  { href: "#portfolio", label: "Portfolio" },
-  { href: "#testimoni", label: "Testimoni" },
+  { href: "/#beranda", label: "Beranda" },
+  { href: "/#layanan", label: "Layanan" },
+  { href: "/#portfolio", label: "Portfolio" },
+  { href: "/#kalkulator", label: "Kalkulator" },
+  { href: "/lacak-proyek", label: "Lacak Proyek", isTracker: true },
+  { href: "/#tentang", label: "Tentang" },
+  { href: "/#testimoni", label: "Testimoni" },
+  { href: "/#penawaran", label: "Kontak" },
 ];
 
 export default function NavLinks({ mobile = false, onClick }: NavLinksProps) {
   if (mobile) {
     return (
-      <>
+      <div className="flex flex-col space-y-1">
         {navLinks.map((link) => (
-          <Link key={link.href} href={link.href} onClick={onClick} className="flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-green-50 hover:text-green-600">
-            <span>{link.label}</span>
+          <Link
+            key={link.href}
+            href={link.href}
+            onClick={onClick}
+            className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium ${
+              link.isTracker
+                ? "bg-emerald-50 text-emerald-700 font-bold"
+                : "text-slate-700 hover:bg-slate-50 hover:text-emerald-600"
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <span>{link.label}</span>
+              {link.isTracker && (
+                <span className="rounded-full bg-emerald-500 px-1.5 py-0.2 text-[9px] font-bold text-white uppercase tracking-wider">
+                  Live
+                </span>
+              )}
+            </div>
             <ChevronRight size={14} className="text-slate-400" />
           </Link>
         ))}
-      </>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className="flex items-center gap-6">
       {navLinks.map((link) => (
         <Link
           key={link.href}
           href={link.href}
-          className="relative text-sm font-medium text-slate-600 transition-colors hover:text-green-600 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-green-500 after:transition-all after:duration-300 hover:after:w-full"
+          className={`text-sm transition-colors flex items-center gap-1.5 ${
+            link.isTracker
+              ? "font-bold text-emerald-600 hover:text-emerald-700"
+              : "font-medium text-slate-600 hover:text-emerald-600"
+          }`}
         >
-          {link.label}
+          {link.isTracker && <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />}
+          <span>{link.label}</span>
         </Link>
       ))}
-    </>
+    </div>
   );
 }

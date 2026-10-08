@@ -1,23 +1,67 @@
-// components/Portfolio.tsx
-import Image from "next/image";
 import { getPortfolioItems } from "@/lib/portfolio";
 import { PortfolioGrid } from "@/components/portfolio-grid";
 
 export const Portfolio = async () => {
-  const portfolioItems = await getPortfolioItems();
+  let portfolioItems: any[] = [];
+  try {
+    portfolioItems = await getPortfolioItems();
+  } catch (err) {
+    console.error("Error fetching portfolio items:", err);
+  }
+
+  const fallbackItems = [
+    {
+      id: "proyek-1",
+      title: "Pembangunan Rumah 2 Lantai",
+      location: "Cluster Greenwich, BSD City",
+      image: "/image/rumah1.jpg",
+      images: ["/image/rumah1.jpg", "/image/visualisasi.jpg", "/image/rumah2.jpg"],
+      order: 1,
+    },
+    {
+      id: "proyek-2",
+      title: "Renovasi Total Fasad & Interior",
+      location: "The Mozia, BSD City",
+      image: "/image/rumah2.jpg",
+      images: ["/image/rumah2.jpg", "/image/rumah1.jpg", "/image/rumah3.jpg"],
+      order: 2,
+    },
+    {
+      id: "proyek-3",
+      title: "Hunian Modern Kontemporer",
+      location: "Sutera Narada, Alam Sutera",
+      image: "/image/rumah3.jpg",
+      images: ["/image/rumah3.jpg", "/image/visualisasi.jpg", "/image/rumah1.jpg"],
+      order: 3,
+    },
+    {
+      id: "proyek-4",
+      title: "Konstruksi Rumah 3 Lantai",
+      location: "Gading Serpong, Tangerang",
+      image: "/image/visualisasi.jpg",
+      images: ["/image/visualisasi.jpg", "/image/rumah2.jpg", "/image/rumah3.jpg"],
+      order: 4,
+    },
+  ];
+
+  const itemsToDisplay = portfolioItems && portfolioItems.length > 0 ? portfolioItems : fallbackItems;
 
   return (
-    <section id="portfolio" className="py-14 md:py-14 bg-white">
+    <section id="portfolio" className="py-16 md:py-20 bg-white">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="text-center max-w-2xl mx-auto">
-          <span className="text-sm font-semibold uppercase tracking-wider text-green-500">Portfolio</span>
-          <h2 className="mt-2 text-3xl font-extrabold md:text-4xl">
-            Proyek <span className="text-green-500">Unggulan</span> Kami
+          <span className="text-xs font-bold uppercase tracking-wider text-emerald-600">
+            Portfolio
+          </span>
+          <h2 className="mt-2 text-2xl sm:text-3xl font-bold text-slate-900 md:text-4xl">
+            Hasil Pekerjaan Kami
           </h2>
-          <p className="mt-3 text-slate-600">Beberapa proyek yang telah diselesaikan dengan kepuasan pelanggan.</p>
+          <p className="mt-2.5 text-sm text-slate-600">
+            Beberapa dokumentasi proyek pembangunan dan renovasi rumah yang telah kami selesaikan.
+          </p>
         </div>
 
-        {portfolioItems.length === 0 ? <p className="text-center text-slate-500 mt-10">Belum ada proyek yang ditambahkan.</p> : <PortfolioGrid items={portfolioItems} />}
+        <PortfolioGrid items={itemsToDisplay} />
       </div>
     </section>
   );

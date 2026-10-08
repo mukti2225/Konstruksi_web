@@ -1,47 +1,138 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { MessageCircle, Calculator, CheckCircle2, ShieldCheck, Award, HardHat } from "lucide-react";
 
 export const Hero = () => {
+  const partners = [
+    "Semen Gresik",
+    "Holcim / Dynamix",
+    "TOTO Sanitary",
+    "Dulux Weathershield",
+    "Nippon Paint",
+    "Roman Ceramics",
+    "Schneider Electric",
+    "Propan",
+  ];
+
   return (
-    <section id="beranda" className="relative bg-linear-to-b from-slate-950 via-slate-900 to-slate-950 text-white overflow-hidden">
-      <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-10 px-4 py-8 md:px-6 md:py-8 lg:flex-row lg:gap-16">
-        <div className="flex-1 text-center lg:text-left">
-          <span className="inline-flex items-center gap-2 rounded-full bg-green-500/20 px-4 py-1.5 text-sm font-medium text-green-400 backdrop-blur-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400"></span>
-            </span>
-            Jasa Konstruksi Terpercaya
-          </span>
-          <h1 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight md:text-4xl lg:text-4xl">
-            Bangun & Renovasi <br />
-            <span className="bg-linear-to-r from-green-400 to-green-600 bg-clip-text text-transparent">Rumah Impian</span> Anda
+    <section id="beranda" className="relative overflow-hidden bg-slate-950 text-white">
+      {/* Subtle blueprint grid & soft glow */}
+      <div className="absolute inset-0 bg-blueprint opacity-40 pointer-events-none" />
+      <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+
+      <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-10 px-4 pt-12 pb-16 md:px-6 md:pt-16 md:pb-20 lg:flex-row lg:gap-14">
+        {/* Left Column */}
+        <div className="flex-1 text-center lg:text-left z-10">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/70 px-3.5 py-1 text-xs font-semibold text-emerald-400">
+            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Kontraktor Terpercaya Jabodetabek</span>
+          </div>
+
+          <h1 className="mt-5 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-5xl leading-tight">
+            Bangun & Renovasi Rumah <br className="hidden sm:block" />
+            <span className="text-emerald-400">Rapi, Tepat Waktu</span> & Bergaransi
           </h1>
-          <p className="mt-5 max-w-lg text-base text-slate-300 md:text-base lg:mx-0">Spesialis pembangunan rumah, renovasi, interior, dan pekerjaan konstruksi dengan kualitas terbaik, pengerjaan tepat waktu, serta harga transparan.</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
+
+          <p className="mt-4 max-w-xl text-base text-slate-300 leading-relaxed lg:mx-0">
+            Spesialis pembangunan rumah tinggal, renovasi total, interior, dan kanopi. 
+            Perhitungan RAB transparan, material berstandar SNI, serta garansi resmi tertulis.
+          </p>
+
+          {/* Value points */}
+          <div className="mt-6 flex flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2 text-xs sm:text-sm text-slate-300">
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
+              <span>Garansi Struktur 10 Tahun</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
+              <span>RAB Transparan 100%</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
+              <span>Survei Lokasi Gratis</span>
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3 sm:justify-center lg:justify-start">
             <a
-              href="#penawaran"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-green-400 px-7 py-3.5 text-sm font-bold text-slate-900 transition-all hover:bg-green-300 hover:shadow-xl hover:shadow-green-400/390 hover:-translate-y-0.5"
+              href="https://wa.me/6281289969933?text=Halo%20Imperial%20Serpong,%20saya%20ingin%20konsultasi%20renovasi/bangun%20rumah."
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 py-3.5 text-sm font-bold text-slate-950 shadow-md transition hover:bg-emerald-400"
             >
-              Konsultasi Gratis
-              <ArrowRight size={18} />
+              <MessageCircle size={18} />
+              <span>Konsultasi Gratis via WhatsApp</span>
             </a>
-            <a href="#portfolio" className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-600 px-7 py-3.5 text-sm font-medium text-white transition-all hover:bg-white/10 hover:border-green-400">
-              Lihat Hasil Kerja
+
+            <a
+              href="#kalkulator"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-900 px-5 py-3.5 text-sm font-semibold text-slate-200 transition hover:bg-slate-800 hover:text-white"
+            >
+              <Calculator size={17} className="text-emerald-400" />
+              <span>Estimasi Biaya</span>
             </a>
+
+            <Link
+              href="/lacak-proyek"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-500/40 bg-emerald-950/40 px-5 py-3.5 text-sm font-semibold text-emerald-300 transition hover:bg-emerald-900/60"
+            >
+              <HardHat size={17} className="text-emerald-400" />
+              <span>Lacak Proyek</span>
+            </Link>
           </div>
         </div>
 
-        <div className="hidden lg:block flex-1 w-full max-w-md lg:max-w-none">
-          <div className="relative aspect-square rounded-2xl shadow-2xl overflow-hidden border border-slate-700">
-            <Image src="/image/visualisasi.jpg" alt="Visualisasi Proyek" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" priority />
-            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-linear-to-t from-slate-950/90 to-transparent"></div>
-            <div className="absolute bottom-4 left-6 right-6 flex justify-between text-xs font-medium text-white">
-              <span>Renovasi</span>
-              <span>100+ Proyek</span>
+        {/* Right Column: Clean Visual Showcase */}
+        <div className="w-full flex-1 max-w-lg lg:max-w-none relative z-10">
+          <div className="relative mx-auto aspect-4/3 w-full max-w-md overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl">
+            <Image
+              src="/image/visualisasi.jpg"
+              alt="Konstruksi Rumah Imperial Serpong"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-white">
+              <div>
+                <p className="font-semibold text-slate-200">Proyek Renovasi & Bangun Baru</p>
+                <p className="text-[11px] text-emerald-400">BSD City, Tangerang & Jaksel</p>
+              </div>
+              <span className="rounded-lg bg-emerald-500/20 px-2.5 py-1 text-xs font-bold text-emerald-300 border border-emerald-500/30">
+                150+ Selesai
+              </span>
             </div>
+          </div>
+
+          {/* Single Subtle Floating Card */}
+          <div className="animate-float absolute -bottom-4 -left-3 sm:-left-5 rounded-xl border border-slate-800 bg-slate-900/95 p-3 shadow-xl backdrop-blur-md hidden sm:flex items-center gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500 text-slate-950">
+              <ShieldCheck size={22} />
+            </div>
+            <div>
+              <p className="text-xs font-bold text-white">Garansi Resmi 10 Tahun</p>
+              <p className="text-[11px] text-slate-400">Struktur & Anti Bocor</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Brand Partner Infinite Marquee */}
+      <div className="border-y border-slate-800/80 bg-slate-900/60 py-3">
+        <div className="relative overflow-hidden">
+          <div className="animate-marquee flex gap-8 items-center text-xs font-semibold text-slate-400">
+            {[...partners, ...partners, ...partners].map((name, idx) => (
+              <div key={idx} className="flex items-center gap-2 shrink-0">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                <span className="text-slate-300 font-medium">{name}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
